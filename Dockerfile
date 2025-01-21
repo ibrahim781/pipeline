@@ -1,16 +1,17 @@
-# Use the official Ubuntu base image
-FROM ubuntu:20.04
+# Use Ubuntu as the base image
+FROM ubuntu:latest
 
-# Set environment variables to avoid interactive prompts during package installation
+# Set environment variables to avoid interactive prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update the package list and install Nginx
-RUN apt-get update -y && \
-    apt-get install -y nginx && \
-    apt-get clean
+# Update the package list and install nginx
+RUN apt-get update -y && apt-get install -y nginx
 
-# Expose port 80 for Nginx
+# Create a test HTML file with "Hello Ibrahim"
+RUN echo '<html><body><h1>Hello Ibrahim</h1></body></html>' > /var/www/html/index.html
+
+# Expose port 80 for the web server
 EXPOSE 80
 
-# Start Nginx in the foreground when the container runs
+# Start nginx when the container starts
 CMD ["nginx", "-g", "daemon off;"]

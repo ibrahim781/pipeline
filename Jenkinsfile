@@ -19,5 +19,3 @@ pipeline {
     }
   }
 }
-docker tag ecr-demoimg:latest 343218187259.dkr.ecr.us-east-1.amazonaws.com/ecr-demoimg:latest
-

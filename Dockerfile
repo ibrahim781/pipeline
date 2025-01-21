@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:8
 
 # Create a user 'ibrahim' and set a password
 RUN for user in ibrahim; do useradd $user; echo "123" | passwd $user --stdin; done

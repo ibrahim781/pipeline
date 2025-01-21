@@ -1,7 +1,16 @@
-FROM centos:8
+# Use the official Ubuntu base image
+FROM ubuntu:20.04
 
-# Install necessary packages including 'passwd'
-#RUN yum update -y && yum install -y passwd
+# Set environment variables to avoid interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Create a user 'ibrahim' and set a password
-#RUN for user in ibrahim; do useradd $user; echo "123" | passwd $user --stdin; done
+# Update the package list and install Nginx
+RUN apt-get update -y && \
+    apt-get install -y nginx && \
+    apt-get clean
+
+# Expose port 80 for Nginx
+EXPOSE 80
+
+# Start Nginx in the foreground when the container runs
+CMD ["nginx", "-g", "daemon off;"]

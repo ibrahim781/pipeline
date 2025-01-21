@@ -13,7 +13,7 @@ pipeline {
           sh 'docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 343218187259.dkr.ecr.us-east-1.amazonaws.com'
           sh 'docker build -t ecr-demoimg .'
           sh 'docker tag ecr-demoimg:latest 343218187259.dkr.ecr.us-east-1.amazonaws.com/ecr-demoimg:""$BUILD_ID""'
-          SH 'docker push 343218187259.dkr.ecr.us-east-1.amazonaws.com/ecr-demoimg:""$BUILD_ID""'
+          sh 'docker push 343218187259.dkr.ecr.us-east-1.amazonaws.com/ecr-demoimg:""$BUILD_ID""'
         }
       }
     }

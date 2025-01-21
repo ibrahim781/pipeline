@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:8
 
 # Install necessary packages including 'passwd'
 RUN yum update -y && yum install -y passwd

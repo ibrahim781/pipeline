@@ -12,11 +12,12 @@ pipeline {
         withEnv (["AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${nev.AWS_SECRET_ACCESS_KEY}", "AWS_DEFAULT_REGION=${env.AWS_DEFAULT_REGION}"]) {
           sh 'docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 343218187259.dkr.ecr.us-east-1.amazonaws.com'
           sh 'docker build -t ecr-demoimg .'
-          sh 'docker tag ecr-demoimg:""$BUILD_ID""'
+          sh 'docker tag ecr-demoimg:latest 343218187259.dkr.ecr.us-east-1.amazonaws.com/ecr-demoimg:""$BUILD_ID""'
           SH 'docker push 343218187259.dkr.ecr.us-east-1.amazonaws.com/ecr-demoimg:""$BUILD_ID""'
         }
       }
     }
   }
 }
+docker tag ecr-demoimg:latest 343218187259.dkr.ecr.us-east-1.amazonaws.com/ecr-demoimg:latest
 
